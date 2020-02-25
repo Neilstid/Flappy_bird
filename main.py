@@ -249,7 +249,7 @@ class GameObject:
     def __init__(self, image, width, height, speed, type_object="Pipes"):
         self.speed = speed  # speed of movement
         self.image = image  # image
-        self.pos = image.get_rect().move(width, height)  # hitbox
+        self.pos = image.get_rect().move(int(width), int(height))  # hitbox
         self.type = type_object  # type of the object
 
     # movement from right to left
@@ -270,7 +270,7 @@ class GameObject:
 
     # from top to bottom at a different speed
     def fall(self):
-        self.pos = self.pos.move(0, parameterGame.get_size_frame_y() / 100)
+        self.pos = self.pos.move(0, int(parameterGame.get_size_frame_y() / 100))
 
     # test collision
     def is_collided_with(self, object_game):
@@ -321,7 +321,7 @@ def show_score(color, font, size, score):
     score_font = pygame.font.SysFont(font, size)  # font of the text
     score_surface = score_font.render('Score : ' + str(score), True, color)  # text to print
     score_rect = score_surface.get_rect()  # hitbox
-    score_rect.midtop = (parameterGame.get_size_frame_x() / 10, 15)  # position
+    score_rect.midtop = (int(parameterGame.get_size_frame_x() / 10), 15)  # position
     screen.blit(score_surface, score_rect)  # print it
 
 
@@ -367,7 +367,7 @@ class Option:
     def set_rect(self):
         self.set_rend()  # rend the text
         self.rect = self.rend.get_rect()  # create hitbox
-        self.rect.topleft = self.pos  # set the pos of the hitbox
+        self.rect.topleft = (int(self.pos[0]), int(self.pos[1])) # set the pos of the hitbox
 
 
 # set the menu
